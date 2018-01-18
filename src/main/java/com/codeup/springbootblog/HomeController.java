@@ -13,5 +13,13 @@ import org.springframework.stereotype.Controller;
         public String welcome() {
         return "home";
     }
+
+        @GetMapping("/add/{x}/and/{y}")
+        @ResponseBody
+        public String add(@PathVariable int x, @PathVariable int y) {
+            return "" + (x + y);
+        }
+
     }
+
 
