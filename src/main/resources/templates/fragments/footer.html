@@ -9,8 +9,13 @@
 <body>
 
 
-<footer th:fragment="my-partial1" id="asd" class="blue-color">
-    <h3>This is the footer. </h3>
+<footer th:fragment="footer" class="footer">
+    <footer class="footer">
+        <div class="container">
+            <!-- Using #dates : utility methods for java.util.Date objects: -->
+            <span class="text-muted">Codeup blog &copy; <span th:text="${#dates.year(#dates.createNow())}"></span></span>
+        </div>
+    </footer>
 </footer>
 
 </body>

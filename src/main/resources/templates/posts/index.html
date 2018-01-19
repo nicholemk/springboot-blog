@@ -1,10 +1,13 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
-<head>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragments/header :: main-header('All posts')">
     <meta charset="UTF-8">
     <title>Ad Index</title>
 </head>
 <body>
-    <h2>This shows all the ads.</h2>
+    <div th:each="post : ${posts}">
+        <h2 th:text="${post.title}"></h2>
+        <p th:text="${post.body}"></p>
+    </div>
 </body>
 </html>

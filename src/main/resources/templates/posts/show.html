@@ -1,10 +1,11 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
-<head>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragments/header :: main-header(${post.title})">
     <meta charset="UTF-8">
     <title>Single Ad</title>
 </head>
 <body>
-    <h3>This shows a single ad?</h3>
+    <h3 th:text="${post.title}"></h3>
+    <p th:text="${post.body}"></p>
 </body>
 </html>

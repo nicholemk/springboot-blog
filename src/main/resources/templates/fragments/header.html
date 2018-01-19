@@ -5,8 +5,12 @@
     <title>Header</title>
 </head>
 <body>
-<header th:fragment="my-partial" id="asd" class="blue-color">
-    <h2>This is the header. </h2>
+<header th:fragment="header" class="header">
+    <header class="header">
+        <div class="container">
+            <span class="text-muted">Header <span th:text="${#dates.year(#dates.createNow())}"></span></span>
+        </div>
+    </header>
 </header>
 </body>
 </html>
