@@ -12,6 +12,7 @@ import org.springframework.stereotype.Controller;
         private PostRepository postDao;
 
         public HomeController(PostRepository postDao) {
+
             this.postDao = postDao;
         }
 
@@ -19,23 +20,24 @@ import org.springframework.stereotype.Controller;
         @GetMapping("/")
 
         public String index() {
+
             return "home";
         }
 
         @GetMapping("/dao-test")
         @ResponseBody
-        public String daoTest() {
+        public Iterable<Post> daoTest() {
 
-        }
+//            iterable
+//        }
 
-        Post post = new Post("title C", "description C");
+//            Post post = new Post("title C", "description C");
 
 //        postDao.save(post);
 
-        postDao.
+            postDao.
 
-        return"Check console";
+            return postDao.findAll();
+        }
+
     }
-
-
-
