@@ -1,7 +1,7 @@
 package com.codeup.sequoiaspringbootblog;
 
-import com.codeup.sequoiaspringbootblog.models.Post;
-import com.codeup.sequoiaspringbootblog.services.PostService;
+import com.codeup.springbootblog.Controllers.PostService;
+import com.codeup.springbootblog.models.Post;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;

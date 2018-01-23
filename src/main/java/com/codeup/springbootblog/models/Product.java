@@ -1,4 +1,4 @@
-package models;
+package com.codeup.springbootblog.models;
 
 import javax.persistence.Entity;
 import javax.persistence.Table;
