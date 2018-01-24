@@ -1,5 +1,6 @@
 package com.codeup.springbootblog.Controllers;
 
+import com.codeup.springbootblog.daos.PostRepository;
 import com.codeup.springbootblog.models.Post;
 import org.springframework.stereotype.Service;
 
@@ -8,33 +9,31 @@ import java.util.List;
 
 @Service
 public class PostService {
-    private List<Post> posts;
 
-    public PostService() {
-        posts = new ArrayList<>();
-        createPosts();
+    private PostRepository postDao;
+
+    public PostService(PostRepository postDao) {
+        this.postDao = postDao;
     }
 
-    public List<Post> findAll() {
-        return posts;
+    public Iterable<Post> findAll() {
+        return postDao.findAll();
     }
 
     public Post save(Post post) {
-        post.setId(posts.size() + 1);
-        posts.add(post);
+        postDao.save(post);
         return post;
     }
 
     public Post findOne(long id) {
-        return posts.get((int)(id - 1));
-    }
-
-    private void createPosts() {
-        save(new Post("Ad A", "Description A"));
-        save(new Post("Ad B", "Description B"));
-        save(new Post("Ad C", "Description C"));
+        return postDao.findOne(id);
     }
 
     public void update(Post post) {
+        postDao.save(post);
+    }
+
+    public void delete(long id) {
+        postDao.delete(id);
     }
 }

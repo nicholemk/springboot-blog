@@ -3,7 +3,7 @@ package com.codeup.springbootblog.models;
 import javax.persistence.*;
 
 @Entity
-@Table(name = "Posts")
+@Table(name = "posts")
 public class Post {
     @Id
     @GeneratedValue
@@ -12,39 +12,39 @@ public class Post {
     @Column(nullable = false)
     private String title;
 
-    public long getId() {
-        return id;
+    @Column(nullable = true)
+    private String body;
+
+    public Post() {
+
     }
 
-    public void setId(long id) {
-        this.id = id;
+    public Post(String title, String body) {
+        this.title = title;
+        this.body = body;
+    }
+
+    public long getId() {
+        return id;
     }
 
     public String getTitle() {
         return title;
     }
 
+    public String getBody() {
+        return body;
+    }
+
+    public void setId(long id) {
+        this.id = id;
+    }
+
     public void setTitle(String title) {
         this.title = title;
     }
 
-    public String getDescription() {
-        return description;
-    }
-
-    public void setDescription(String description) {
-        this.description = description;
-    }
-
-    @Column(nullable = true)
-    private String description;
-
-    public Post(String title, String Description) {
-        this.title = title;
-        this.description = description;
-    }
-
-    public Post() {
-
+    public void setBody(String body) {
+        this.body = body;
     }
 }

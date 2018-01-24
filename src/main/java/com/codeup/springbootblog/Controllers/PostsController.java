@@ -1,6 +1,7 @@
 package com.codeup.sequoiaspringbootblog;
 
 import com.codeup.springbootblog.Controllers.PostService;
+import com.codeup.springbootblog.daos.PostRepository;
 import com.codeup.springbootblog.models.Post;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -31,26 +32,22 @@ public class PostsController {
     // 1. Create an instance variable with your dependency
     private final PostService postService;
 
-    // 2. Inject the dependency through the constructor and assign it to your instance variable
-    public PostsController(PostService postService) {
-        this.postService = postService; // This the first time we assign something to postService
+    private PostRepository postDao;
+
+    public PostsController(PostService postService, PostRepository postDao) {
+        this.postService = postService;
+        this.postDao = postDao;
     }
 
-    @RequestMapping("/posts")
+    @GetMapping("/posts")
     public String index(Model viewAndModel) {
-        /*List<Post> posts = Arrays.asList(
-            new Post("Post A", "Body A"),
-            new Post("Post B", "Body B"),
-            new Post("Post C", "Body C")
-        );*/
-        List<Post> posts = postService.findAll();
 
-        viewAndModel.addAttribute("posts", posts);
+        viewAndModel.addAttribute("posts", postDao.findAll());
 
-        return "posts/index";
+        return "/posts/index";
     }
 
-    @RequestMapping("/posts/{id}")
+    @GetMapping("/posts/{id}")
     public String show(@PathVariable long id, Model viewAndModel) {
         //Post post = new Post("Test post", "Test body");
         Post post = postService.findOne(id);
@@ -60,7 +57,7 @@ public class PostsController {
         return "posts/show";
     }
 
-    @RequestMapping("/posts/create")
+    @GetMapping("/posts/create")
     public String showCreateForm(Model viewModel) {
         viewModel.addAttribute("post", new Post());
         return "posts/create";
