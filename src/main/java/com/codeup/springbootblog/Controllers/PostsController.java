@@ -2,6 +2,7 @@ package com.codeup.springbootblog.Controllers;
 
 import com.codeup.springbootblog.Controllers.PostService;
 import com.codeup.springbootblog.daos.PostRepository;
+import com.codeup.springbootblog.daos.UsersRepository;
 import com.codeup.springbootblog.models.Post;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -31,12 +32,14 @@ import java.util.List;
 public class PostsController {
     // 1. Create an instance variable with your dependency
     private final PostService postService;
+    private final UsersRepository usersRepository;
 
     private PostRepository postDao;
 
-    public PostsController(PostService postService, PostRepository postDao) {
+    //2. inject dependency through constructor and assign it to intance variable
+    public PostsController(PostService postService, UsersRepository usersRepository) {
         this.postService = postService;
-        this.postDao = postDao;
+        this.usersRepository = usersRepository;
     }
 
     @GetMapping("/posts")
