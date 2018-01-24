@@ -1,4 +1,4 @@
-package com.codeup.sequoiaspringbootblog;
+package com.codeup.springbootblog.Controllers;
 
 import com.codeup.springbootblog.Controllers.PostService;
 import com.codeup.springbootblog.daos.PostRepository;
@@ -44,40 +44,48 @@ public class PostsController {
 
         viewAndModel.addAttribute("posts", postDao.findAll());
 
-        return "/posts/index";
+        return "posts/index";
     }
 
     @GetMapping("/posts/{id}")
     public String show(@PathVariable long id, Model viewAndModel) {
-        //Post post = new Post("Test post", "Test body");
         Post post = postService.findOne(id);
-
         viewAndModel.addAttribute("post", post);
-
         return "posts/show";
     }
 
-    @GetMapping("/posts/create")
-    public String showCreateForm(Model viewModel) {
-        viewModel.addAttribute("post", new Post());
-        return "posts/create";
+    @GetMapping("posts/new")
+    // to catch the form
+    public String showCreatePostForm(Model viewAndModel){
+        Post post = new Post();
+        viewAndModel.addAttribute("post", post);
+        return "posts/new";
     }
 
-    @PostMapping("/posts/create")
-    public String createPost(@ModelAttribute Post post) {
+    @PostMapping("posts/create")
+    @ResponseBody
+    // we are not using pathvariable here because is coming from a form
+    public String savePost(@ModelAttribute Post post){
         postService.save(post);
+        return post.getTitle() + " " + post.getBody();
+    }
+
+    @GetMapping("posts/{id}/edit")
+    public String showEditForm(@PathVariable long id, Model viewAndModel){
+        Post post = postService.findOne(id);
+        viewAndModel.addAttribute("post", post);
+        return "/posts/edit";
+    }
+
+    @GetMapping("posts/{id}/delete")
+    public String deletePost(@PathVariable long id, Model viewAndModel){
+        postService.delete(id);
         return "redirect:/posts";
     }
 
-    @GetMapping("/posts/{id}/edit")
-    public String showEditForm(@PathVariable long id, Model viewAndModel) {
-        Post post = postService.findOne(id);
-        viewAndModel.addAttribute("post", post);
-        return "posts/edit";
-    }
 
-    @PostMapping("/posts/edit")
-    public String updatePost(@ModelAttribute Post post) {
+    @PostMapping("posts/edit")
+    public String updatePost(@ModelAttribute Post post){
         postService.update(post);
         return "redirect:/posts";
     }

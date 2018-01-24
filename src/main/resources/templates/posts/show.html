@@ -1,34 +1,15 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
-<head th:replace="fragments/header :: main-header(${post.title})">
-    <meta charset="UTF-8">
-    <title>Single Ad</title>
-    <link href="../../static/bootstrap.min.css" rel="stylesheet" type="text/css">
+<head th:replace="fragments/head :: head(${post.title})">
 
 </head>
 <body>
+    <nav th:replace="fragments/navbar :: navbar-partial"></nav>
+
     <h3 th:text="${post.title}"></h3>
-    <p th:text="${post.description}"></p>
-    <table class="table table-hover">
-        <thead>
-        <tr class="table-active">
-            <th scope="row">ID</th>
-            <td>Post</td>
-            <td>Author</td>
-            <td>Category</td>
-        </tr>
-        </thead>
-        <tr>
-            <th scope="row">Default</th>
-            <td><h3 th:text="${post.title}"></h3></td>
-            <td>Column content</td>
-            <td><p th:text="${post.description}"></p></td>
-        </tr>
-        <tr>
-            <th scope="row">Default</th>
-            <td><h3 th:text="${post.title}"></h3></td>
-            <td>Column content</td>
-            <td><p th:text="${post.description}"></p></td>
-        </tr>
+    <p th:text="${post.body}"></p>
+
+    <footer th:replace="fragments/footer :: footer-partial"></footer>
+
 </body>
 </html>
