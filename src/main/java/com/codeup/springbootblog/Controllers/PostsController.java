@@ -45,12 +45,12 @@ public class PostsController {
     @GetMapping("/posts")
     public String index(Model viewAndModel) {
 
-        viewAndModel.addAttribute("posts", postDao.findAll());
+//        viewAndModel.addAttribute("posts", postDao.findAll());
 
         return "posts/index";
     }
 
-    @GetMapping("/posts/{id}")
+    @RequestMapping("/posts/{id}")
     public String show(@PathVariable long id, Model viewAndModel) {
         Post post = postService.findOne(id);
         viewAndModel.addAttribute("post", post);
