@@ -3,23 +3,27 @@ package com.codeup.springbootblog.models;
 import javax.persistence.*;
 import java.util.List;
 
-public class Users {
+@Entity
+@Table(name = "users")
+public class User {
     @Id
     @GeneratedValue
     private long id;
 
-    @Column(unique = true, nullable = false);
+    @Column(unique = true, nullable = false)
     private String username;
 
-    @Column(nullable = false);
+    @Column(nullable = false)
     private String password;
 
-    @Column(nullable = false)
+    @Column(nullable = false, unique = true)
     private String email;
+
+    public User() {
+    }
 
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "user")
     private List<Post> posts;
-
 
     public User(String username, String password, String email) {
         this.username = username;
@@ -27,11 +31,6 @@ public class Users {
         this.email = email;
     }
 
-    public Users(String username, String password, String email) {
-        this.username = username;
-        this.password = password;
-        this.email = email;
-    }
 
     public long getId() {
         return id;
