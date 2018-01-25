@@ -71,6 +71,7 @@ public class PostsController {
     public String savePost(@ModelAttribute Post post){
         postService.save(post);
         return post.getTitle() + " " + post.getBody();
+        return "redirect:/ads";
     }
 
     @GetMapping("posts/{id}/edit")
